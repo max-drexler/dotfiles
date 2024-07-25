@@ -16,8 +16,7 @@ shopt -s checkwinsize
 shopt -s extglob
 
 # Prompt
-PROMPT_COMMAND='PS1_CMD1=$(git branch --show-current 2>/dev/null)'; PS1='\u@\h
-\w (${PS1_CMD1})\\$ '
+PROMPT_COMMAND='PS1_CMD1=$(git branch --show-current 2>/dev/null)'; PS1='\u@\h\w (${PS1_CMD1})\\$ '
 PROMPT_DIRTRIM=6
 
 # Load external files

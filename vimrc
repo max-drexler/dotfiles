@@ -73,7 +73,7 @@ set tabstop=4					" 1 tab == 4 spaces
 set shiftwidth=4				" 1 tab == 4 spaces
 
 set lbr
-set textwidth=80				" linebreak at 80 columns
+"set textwidth=80				" linebreak at 80 columns
 
 set autoindent					" Keep indent when starting newline...
 set smartindent					" ...But do it intelligently
