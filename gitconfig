@@ -1,9 +1,7 @@
 [user]
-	name = Dave Eddy
-	email = dave@daveeddy.com
+	name = Max Drexler
+	email = mndrexler@gmail.com
 [color]
 	ui = auto
-[push]
-	default = matching
 [pull]
 	rebase = false
