@@ -6,3 +6,10 @@
 
 . ~/.commonrc
 
+# Shell options
+setopt prompt_subst
+
+
+# Prompt
+prmopt='%n@%m %1~ ($(git branch --show-current 2>/dev/null))$ '
+
