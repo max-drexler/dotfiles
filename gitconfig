@@ -1,0 +1,9 @@
+[user]
+	name = Dave Eddy
+	email = dave@daveeddy.com
+[color]
+	ui = auto
+[push]
+	default = matching
+[pull]
+	rebase = false
