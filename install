@@ -24,9 +24,11 @@ symlink() {
 
 # Link dotfiles
 dotfiles=(
-	bash_profile
+	commonrc
+	zshrc
 	bashrc
 	gitconfig
+	gitconfig-work
 	vimrc
 )
 for f in "${dotfiles[@]}"; do

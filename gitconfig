@@ -1,7 +1,13 @@
 [user]
 	name = Max Drexler
 	email = mndrexler@gmail.com
+
+[includeIf "hasconfig:remote.*.url:*gitlab.ssec.wisc.edu*/**"]
+	path = .gitconfig-work
+
 [color]
 	ui = auto
+
 [pull]
 	rebase = false
+
