@@ -1,48 +1,47 @@
 #!/usr/bin/env bash
 #
-# Best bashrc in history
+# Custom bashrc
 #
 # Author: Dave Eddy <dave@daveeddy.com>
 # Date: Sometime in 2011
 # License: MIT
+#
+# Editor: Max Drexler <mndrexler@gmail.com>
+# Date: Jul. 25 2024
 
 # If not running interactively, don't do anything
 [[ -n $PS1 ]] || return
 
-# Load bics, plugins found in bics-plugins
-. ~/.bics/bics || echo '> failed to load bics' >&2
-
 # Set environment
 export EDITOR='vim'
-export GREP_COLOR='1;36'
+#export GREP_COLOR='1;36'
 export HISTCONTROL='ignoredups'
 export HISTSIZE=5000
 export HISTFILESIZE=5000
-export LSCOLORS='ExGxbEaECxxEhEhBaDaCaD'
+#export LSCOLORS='ExGxbEaECxxEhEhBaDaCaD'
 export PAGER='less'
-export TZ='America/New_York'
+export TZ='America/Chicago'
 export VISUAL='vim'
 
-# Support colors in less
-export LESS_TERMCAP_mb=$(tput bold; tput setaf 1)
-export LESS_TERMCAP_md=$(tput bold; tput setaf 1)
-export LESS_TERMCAP_me=$(tput sgr0)
-export LESS_TERMCAP_se=$(tput sgr0)
-export LESS_TERMCAP_so=$(tput bold; tput setaf 3; tput setab 4)
-export LESS_TERMCAP_ue=$(tput sgr0)
-export LESS_TERMCAP_us=$(tput smul; tput bold; tput setaf 2)
-export LESS_TERMCAP_mr=$(tput rev)
-export LESS_TERMCAP_mh=$(tput dim)
-export LESS_TERMCAP_ZN=$(tput ssubm)
-export LESS_TERMCAP_ZV=$(tput rsubm)
-export LESS_TERMCAP_ZO=$(tput ssupm)
-export LESS_TERMCAP_ZW=$(tput rsupm)
+# Support colors in less (commented until further notice)
+#export LESS_TERMCAP_mb=$(tput bold; tput setaf 1)
+#export LESS_TERMCAP_md=$(tput bold; tput setaf 1)
+#export LESS_TERMCAP_me=$(tput sgr0)
+#export LESS_TERMCAP_se=$(tput sgr0)
+#export LESS_TERMCAP_so=$(tput bold; tput setaf 3; tput setab 4)
+#export LESS_TERMCAP_ue=$(tput sgr0)
+#export LESS_TERMCAP_us=$(tput smul; tput bold; tput setaf 2)
+#export LESS_TERMCAP_mr=$(tput rev)
+#export LESS_TERMCAP_mh=$(tput dim)
+#export LESS_TERMCAP_ZN=$(tput ssubm)
+#export LESS_TERMCAP_ZV=$(tput rsubm)
+#export LESS_TERMCAP_ZO=$(tput ssupm)
+#export LESS_TERMCAP_ZW=$(tput rsupm)
 
 # PATH
-path_add ~/bin before
+#path_add ~/bin before
 
 # Shell Options
-shopt -s cdspell
 shopt -s checkwinsize
 shopt -s extglob
 
@@ -52,14 +51,11 @@ shopt -s dirspell 2>/dev/null || true
 
 # Aliases
 alias ..='echo "cd .."; cd ..'
-alias ag='rg' # sorry silver searcher
 alias chomd='chmod'
-alias externalip='curl -sS https://www.daveeddy.com/ip'
 alias gerp='grep'
-alias hl='rg --passthru'
-alias suod='sudo'
+alias python='python3' # default to python3
+alias pyton='python3'
 grep --color=auto < /dev/null &>/dev/null && alias grep='grep --color=auto'
-xdg-open --version &>/dev/null && alias open='xdg-open'
 
 # Enable color support of ls
 if ls --color=auto &>/dev/null; then
@@ -69,21 +65,8 @@ else
 fi
 
 # Git Aliases
-alias nb='git checkout -b "$USER-$(date +%s)"' # new branch
-alias ga='git add . --all'
-alias gb='git branch'
-alias gc='git clone'
-alias gci='git commit -a'
-alias gco='git checkout'
-alias gd="git diff ':!*lock'"
-alias gdf='git diff' # git diff (full)
-alias gi='git init'
 alias gl='git log'
-alias gp='git push origin HEAD'
-alias gr='git rev-parse --show-toplevel' # git root
 alias gs='git status'
-alias gt='git tag'
-alias gu='git pull' # gu = git update
 
 # because `master` is sometimes `main` (or others), these must be functions.
 gmb() { # git main branch
@@ -98,12 +81,6 @@ gmb() { # git main branch
 gbd() { # git branch diff
 	local mb=$(gmb) || return 1
 	git diff "$mb..HEAD"
-}
-
-# checkout the main branch and update it
-gcm() { # git checkout $main
-	local mb=$(gmb) || return 1
-	git checkout "$mb" && git pull
 }
 
 # merge the main branch into our branch
