@@ -21,7 +21,8 @@ set showmatch					" Show matching brackets.
 set cmdheight=1
 set title						" Set the title
 set foldcolumn=1				" Add margin to the left
-set relativenumber				" Enable line numbers
+set relativenumber				" Enable relative line numbers
+set number                      " Show current line number instead of 0
 
 
 " ---------------------------------------------
