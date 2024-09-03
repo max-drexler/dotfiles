@@ -127,7 +127,7 @@ highlight clear SpellLocal
 highlight SpellLocal term=underline cterm=underline
 
 
-cmap ss :setlocal spell! spelllang=en_us<CR>    " 'ss' toggles spellcheck
+command SC setlocal spell! spelllang=en_us    " 'SC' toggles spellcheck
 
 " ---------------------------------------------
 " Helper functions
