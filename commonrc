@@ -41,7 +41,7 @@ if [[ -d /opt/homebrew ]];then
 fi
 # make default python interpreter custom venv
 if [[ -d $HOME/.venv/bin ]]; then
-	export PATH=$HOME/.venv/bin:$PATH
+    source $HOME/.venv/bin/activate
 fi
 
 # Aliases
