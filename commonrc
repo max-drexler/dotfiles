@@ -69,6 +69,7 @@ alias mamba='micromamba'
 # Git Aliases
 alias gs='git status'
 alias gl='git log --oneline --graph --all' # git tree
+alias gb='git branch'
 
 # because `master` is sometimes `main` (or others), these must be functions.
 gmb() { # git main branch
