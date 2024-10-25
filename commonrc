@@ -8,7 +8,7 @@
 # If not running interactively, don't do anything
 [[ -n $PS1 ]] || return
 
-# Set environment
+# Set environment (this might be bash specific)
 export EDITOR='vim'
 export GREP_COLOR='1;36'
 export HISTCONTROL='ignoredups'
@@ -39,10 +39,10 @@ export VISUAL='vim'
 if [[ -d /opt/homebrew ]];then
     export PATH=/opt/homebrew/bin:/opt/homebrew/sbin:$PATH
 fi
-# make default python interpreter custom venv
-if [[ -d $HOME/.venv/bin ]]; then
-    source $HOME/.venv/bin/activate
-fi
+
+# Add our local binaries
+mkdir -p "$HOME/.local/bin"
+export PATH="$HOME/.local/bin:$PATH"
 
 # Aliases
 alias ..='echo "cd .."; cd ..'
