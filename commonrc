@@ -2,7 +2,7 @@
 # Common setup between zsh and bash
 #
 # Author: Max Drexler <mndrexler@gmail.com>
-# Date: Jul. 25 2024
+# Date: Oct. 28 2024
 # License: MIT
 
 # If not running interactively, don't do anything
@@ -44,26 +44,28 @@ fi
 mkdir -p "$HOME/.local/bin"
 export PATH="$HOME/.local/bin:$PATH"
 
-# Aliases
+# General Aliases
 alias ..='echo "cd .."; cd ..'
 alias c='clear'
 alias chomd='chmod'
 alias gerp='grep'
 grep --color=auto < /dev/null &>/dev/null && alias grep='grep --color=auto'
 
-# Enable color support of ls
+# ls Aliases
 if ls --color=auto &>/dev/null; then
+    # Linux
 	alias ls='ls -p --color=auto'
+    alias ll='ls -lh --group-directories-first'
 else
+    # OSX
 	alias ls='ls -p -G'
+    alias ll='ls -lh'
 fi
-
-alias ll='ls -l'
-alias la='ls -la'
+alias la='ll -A'
 
 # Python Aliases
 alias python='python3' # default to python3
-alias pyton='python3'
+alias pyton='python'
 alias mamba='micromamba'
 
 # Git Aliases
