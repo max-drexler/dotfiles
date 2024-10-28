@@ -30,6 +30,7 @@ dotfiles=(
 	gitconfig
 	gitconfig-work
 	vimrc
+    inputrc
 )
 for f in "${dotfiles[@]}"; do
 	[[ -d ~/.$f && ! -L ~/.$f ]] && rm -r ~/."$f"
