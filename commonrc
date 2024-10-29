@@ -55,7 +55,7 @@ grep --color=auto < /dev/null &>/dev/null && alias grep='grep --color=auto'
 if ls --color=auto &>/dev/null; then
     # Linux
 	alias ls='ls -p --color=auto'
-    alias ll='ls -lh --group-directories-first'
+    alias ll='ls -lhv --group-directories-first'
 else
     # OSX
 	alias ls='ls -p -G'
