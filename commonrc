@@ -58,10 +58,10 @@ else
 	alias ls='ls -p -G'
 fi
 
-alias ll='ls -lh'
-
 if ls --group-directories-first &>/dev/null; then
-    alias ll='ll --group-directories-first'
+    alias ll='ls -lh --group-directories-first'
+else
+    alias ll='ls -lh'
 fi
 
 alias la='ll -A'
