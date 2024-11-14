@@ -31,7 +31,7 @@ set number                      " Show current line number instead of 0
 " ---------------------------------------------
 " Vim Status Bar Options
 " ---------------------------------------------
-set laststatus=1                " Show the statusline 
+set laststatus=1                " Show the statusline
 set showmode					" Show the current mode in status line
 set showcmd						" Show partial command in status line
 
@@ -130,7 +130,14 @@ highlight clear SpellLocal
 highlight SpellLocal term=underline cterm=underline
 
 
-command SC setlocal spell! spelllang=en_us    " 'SC' toggles spellcheck
+" ---------------------------------------------
+" Custom Commands/Mappings
+" ---------------------------------------------
+command! SC setlocal spell! spelllang=en_us    " toggle spellcheck
+
+nnoremap Y y$
+
+"command Vterm vertical term
 
 " ---------------------------------------------
 " Helper functions

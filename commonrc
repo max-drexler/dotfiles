@@ -53,14 +53,17 @@ grep --color=auto < /dev/null &>/dev/null && alias grep='grep --color=auto'
 
 # ls Aliases
 if ls --color=auto &>/dev/null; then
-    # Linux
 	alias ls='ls -p --color=auto'
-    alias ll='ls -lhv --group-directories-first'
 else
-    # OSX
 	alias ls='ls -p -G'
-    alias ll='ls -lh'
 fi
+
+alias ll='ls -lh'
+
+if ls --group-directories-first &>/dev/null; then
+    alias ll='ll --group-directories-first'
+fi
+
 alias la='ll -A'
 
 # Python Aliases
