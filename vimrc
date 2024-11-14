@@ -1,15 +1,18 @@
 " ---------------------------------------------
-" Max Drexler's vimrc
-" mndrexler@gmail.com
+" My vimrc
 " License MIT
 "
 " Credits
 "   https://github.com/Happy-Dude/
 "   https://github.com/bahamas10/
+"   https://github.com/tpop/vim-sensible
 "
 " ---------------------------------------------
-set nocompatible		" Disable VI Compatibility
 
+" Disable VI Compatibility
+if &compatible
+    set nocompatible
+endif
 
 " ---------------------------------------------
 " Vim UI Options
@@ -139,6 +142,10 @@ function! HasPaste()           " Return true if paste mode enabled
     return ''
 endfunction
 
+" Correctly highlight $() and other modern affordances in filetype=sh.
+if !exists('g:is_posix') && !exists('g:is_bash') && !exists('g:is_kornshell') && !exists('g:is_dash')
+  let g:is_posix = 1
+endif
 
 " ---------------------------------------------
 " Source local config
