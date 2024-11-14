@@ -8,14 +8,14 @@ set editing-mode vi
 set show-mode-in-prompt on
 
 # Set different cursors for the vim modes
-$if term=linux
-    # Virtual console uses different escape codes
-	set vi-ins-mode-string \1\e[?0c\2
-	set vi-cmd-mode-string \1\e[?8c\2
-$else
-	set vi-ins-mode-string "\1\e[6 q\2"
-	set vi-cmd-mode-string "\1\e[2 q\2"
-$endif
+#$if term=linux
+#    # Virtual console uses different escape codes
+#	set vi-ins-mode-string \1\e[?0c\2
+#	set vi-cmd-mode-string \1\e[?8c\2
+#$else
+#	set vi-ins-mode-string "\1\e[6 q\2"
+#	set vi-cmd-mode-string "\1\e[2 q\2"
+#$endif
 
 # Tab completes the word or shows all options if ambiguous
 set show-all-if-ambiguous on
