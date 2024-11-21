@@ -66,6 +66,7 @@ set incsearch					" Show results as searching
 " ---------------------------------------------
 set encoding=utf8				" utf-8 encoding
 set ffs=unix,mac,dos			" set file types
+set autoread                    " load changes after external command (!)
 
 
 " ---------------------------------------------
@@ -81,7 +82,7 @@ set lbr
 
 set autoindent					" Keep indent when starting newline...
 set smartindent					" ...But do it intelligently
-set nowrap						" Don't wrap
+set wrap						" Wrap
 
 
 " ---------------------------------------------
