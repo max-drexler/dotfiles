@@ -1,14 +1,20 @@
-Configuration Files
-===================
+# Configuration Files
 
-My custom config files and rcs.
+My custom config files.
 
-Heavily inspired by [@bahamas10](https://github.com/bahamas10/dotfiles).
+## Installation
 
+Inside the repository run `install` to install the config files according to the [repo layout](#repo-layout).
 
-Installation
-------------
+## Repo Layout
 
-Inside the repository you can run `install` to place the configs in `~`.
-This will symlink them from the repository, so you can easily update with `git
-pull`.
+`bash/`: Config files installed to `~` when bash is the detected shell.
+
+`zsh/`: Config files installed to `~` when zsh is the detected shell.
+
+`config/`: Config directories installed to `~/.config/`.
+
+`home/`: Config files/directories always installed to `~`.
+
+`bin/`: Executables/scripts installed to `~/bin`.
+

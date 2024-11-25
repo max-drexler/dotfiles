@@ -1,0 +1,5 @@
+# Git config to use for the SSEC
+
+[user]
+	email = "mdrexler@wisc.edu"
+

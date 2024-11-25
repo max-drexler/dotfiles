@@ -9,6 +9,7 @@
 # Shell options
 setopt prompt_subst
 
+set -o vi
 
 # Prompt
 prmopt='%n@%m %1~ ($(git branch --show-current 2>/dev/null))$ '
