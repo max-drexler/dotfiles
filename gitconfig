@@ -11,3 +11,6 @@
 [pull]
 	rebase = false
 
+[alias]
+    mpush = push -o merge_request.create --set-upstream origin HEAD
+
