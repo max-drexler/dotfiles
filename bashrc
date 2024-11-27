@@ -1,20 +1,19 @@
-#!/usr/bin/env bash
-# Custom bashrc
-# ============
-#
-# Inspired by:
-#   https://github.com/bahamas10/dotfiles
-#   https://gitweb.gentoo.org/repo/gentoo.git/tree/app-shells/bash/files/bashrc
+## My bashrc
+## =========
+##
+## Author: Max Drexler <mndrexler@gmail.com>
+## Date: Nov. 26 2024
+## License: MIT
+##
 
-#
-# Author: Max Drexler <mndrexler@gmail.com>
-# Date: Jul. 25 2024
-# License: MIT
-#
+# If not run interactively, don't do anything
+[[ -z "$PS1" ]] && return
 
-. ~/.commonrc
 
-# Shell Options
+## Shell Options
+## =============
+##
+
 shopt -s extglob
 
 # Bash won't get SIGWINCH if another process is in the foreground.
@@ -23,11 +22,64 @@ shopt -s extglob
 # http://cnswww.cns.cwru.edu/~chet/bash/FAQ (E11)
 shopt -s checkwinsize
 
-# Load local file if exist
-. ~/.bashrc.local    2>/dev/null || true
+## Environment
+## ===========
+##
 
-## Prompt Customization
-## ====================
+export EDITOR='vim'
+export VISUAL='vim'
+
+#export GREP_COLOR='1;36'
+export HISTCONTROL='ignoredups'
+export HISTSIZE=5000
+export HISTFILESIZE=5000
+export LSCOLORS='ExGxbEaECxxEhEhBaDaCaD'
+export PAGER='less'
+export TZ='America/Chicago'
+
+
+# Homebrew
+if [ -d "/opt/homebrew/" ]; then
+    BREW_BIN="/opt/homebrew/bin/brew"
+else
+    BREW_BIN="/usr/local/bin/brew"
+fi
+
+if command -v $BREW_BIN --version &>/dev/null; then
+    HOMEBREW_PREFIX="$($BREW_BIN --prefix)"
+    eval "$($HOMEBREW_PREFIX/bin/brew shellenv)"
+
+    if [ -r "${HOMEBREW_PREFIX}/etc/profile.d/bash_completion.sh" ]; then
+        source "${HOMEBREW_PREFIX}/etc/profile.d/bash_completion.sh"
+    else
+        for COMPLETION in "${HOMEBREW_PREFIX}/etc/bash_completion.d/"*; do
+            [ -r "${COMPLETION}" ] && source "${COMPLETION}"
+        done
+    fi
+fi
+
+
+# Local executables
+if [ ! -d "$HOME/.local/bin" ]; then
+    mkdir "$HOME/.local/bin"
+fi
+export PATH="$HOME/.local/bin:$PATH"
+
+
+
+## Custom Functions
+## ================
+##
+
+# tree output that respects .gitignore
+gtree() {
+	# --fromfile in tree >=1.8.0
+	tree --fromfile < $PWD &>/dev/null || return 1
+	git ls-tree -r --name-only HEAD | tree --fromfile
+}
+
+## Prompt
+## ======
 ##
 
 # Unused Prompt colors
@@ -79,4 +131,10 @@ PS2='>> '
 
 # Keep environment clean
 unset LIGHT_RED LIGHT_GREEN LIGHT_PURPLE RESET
+
+# Load aliases
+[ -r ~/.aliasrc ] && . ~/.aliasrc
+
+# Load local file if exist
+[ -r ~/.bashrc.local ]  && . ~/.bashrc.local
 
