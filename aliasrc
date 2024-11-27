@@ -1,0 +1,43 @@
+# Aliases to use with POSIX-compatible shells.
+#
+# Author: Max Drexler
+# Date: 11/25/24
+# License: MIT
+#
+
+# General Aliases
+alias ..='echo "cd .."; cd ..'
+alias c='clear'
+alias chomd='chmod'
+alias gerp='grep'
+
+# ls Aliases
+if ls --color=auto &>/dev/null; then
+	alias ls='ls -p --color=auto'
+else
+	alias ls='ls -p -G'
+fi
+
+if ls --group-directories-first &>/dev/null; then
+    alias ll='ls -lh --group-directories-first'
+else
+    alias ll='ls -lh'
+fi
+
+alias la='ll -A'
+
+# Python Aliases
+alias python='python3' # default to python3
+alias pyton='python'
+
+# Git Aliases
+alias gs='git status'
+alias gl='git log --oneline --graph --all' # git tree
+alias gb='git branch'
+alias gd='git diff'
+
+# Add local aliases
+if [ -r ~/.aliasrc.local ]; then
+    . ~/.aliasrc.local
+fi
+
