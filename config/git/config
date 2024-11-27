@@ -3,7 +3,7 @@
 	email = mndrexler@gmail.com
 
 [includeIf "hasconfig:remote.*.url:*gitlab.ssec.wisc.edu*/**"]
-	path = .gitconfig-work
+	path = ssec
 
 [color]
 	ui = auto
