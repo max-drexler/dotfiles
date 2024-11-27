@@ -8,36 +8,56 @@
 # License: MIT
 #
 # Editor: Max Drexler <mndrexler@gmail.com>
-# Date: Jul 25, 2024
+# Date: Nov. 27, 2024
 
-# makes "defaults" command print to screen
-defaults() {
-	echo defaults "$@"
-	command defaults "$@"
-}
+
+# Keep a log of "installed" dotfiles for easy uninstall
+INSTALL_LOG_PATH="${INSTALL_LOG_PATH-$HOME/.dotinstall}"
 
 # verbose ln, because `ln -v` is not portable
 symlink() {
-	printf '%55s -> %s\n' "${1/#$HOME/\~}" "${2/#$HOME/\~}"
+	printf '%55s ==> %s\n' "$1" "$2"
 	ln -nsf "$@"
 }
 
+log_install() {
+    [ $# -ne 1 ] && return 1
+    if ! grep -sq "$1" "$INSTALL_LOG_PATH"; then
+        printf '%s\n' "$1" >> "$INSTALL_LOG_PATH"
+    fi
+}
+
+# If grep doesn't exist, we can't keep a log
+if command -v grep --version &>/dev/null; then
+    # If install path was purposely left blank, don't keep a log
+    if [ -n "$INSTALL_LOG_PATH" ]; then
+        KEEP_LOG=0
+    else
+        KEEP_LOG=1
+    fi
+else
+    KEEP_LOG=1
+fi
+
+# TODO: find way to remove array, so installer is sh-compatible
 # Link dotfiles
 dotfiles=(
-	commonrc
-	zshrc
+    aliasrc
+    bash_profile
 	bashrc
-	gitconfig
-	gitconfig-work
-	vimrc
+    config/alacritty.toml
+    config/git
+    tmux.conf
     inputrc
+	vimrc
 )
 for f in "${dotfiles[@]}"; do
-	[[ -d ~/.$f && ! -L ~/.$f ]] && rm -r ~/."$f"
+	#[[ -d ~/.$f && ! -L ~/.$f ]] && rm -r ~/."$f"
 	symlink "$PWD/$f" ~/."$f"
+    [ "$KEEP_LOG" -eq 0 ] && log_install ~/."$f"
 done
 
-# neovim
-symlink ~/.vim ~/.config/nvim
+
+unset INSTALL_LOG_PATH KEEP_LOG
 
 true
