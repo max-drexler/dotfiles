@@ -5,7 +5,11 @@
 # License: MIT
 
 set editing-mode vi
-set show-mode-in-prompt on
+
+# Changing the mode string is too laggy :/
+#set show-mode-in-prompt on
+#set vi-ins-mode-string ""
+#set vi-cmd-mode-string "+"
 
 # Set different cursors for the vim modes
 #$if term=linux
