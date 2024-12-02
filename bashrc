@@ -84,17 +84,17 @@ gtree() {
 
 # Unused Prompt colors
 #GREEN="\[\033[0;32m\]"
-#CYAN="\[\033[0;36m\]"
 #RED="\[\033[0;31m\]"
 #PURPLE="\[\033[0;35m\]"
 #BROWN="\[\033[0;33m\]"
 #LIGHT_GRAY="\[\033[0;37m\]"
-#LIGHT_BLUE="\[\033[1;34m\]"
 #LIGHT_CYAN="\[\033[1;36m\]"
 #YELLOW="\[\033[1;33m\]"
 #WHITE="\[\033[1;37m\]"
 
 # Used Prompt colors
+LIGHT_BLUE="\[\033[1;34m\]"
+CYAN="\[\033[0;36m\]"
 LIGHT_RED="\[\033[1;31m\]"
 LIGHT_PURPLE="\[\033[1;35m\]"
 LIGHT_GREEN="\[\033[1;32m\]"
@@ -120,13 +120,13 @@ _prompt_rv(){
 _prompt_host(){
     # Add a prompt component for the host depending on ssh
     if [ -n "$SSH_CLIENT" ] || [ -n "$SSH_TTY" ]; then
-        echo "@${YELLOW}\h${RESET}"
+        echo "@$(hostname)"
     fi
 }
 
 # Directory parts to show in the prompt 
 PROMPT_DIRTRIM=3
-PS1="${LIGHT_RED}\$(_prompt_rv)${RESET}${LIGHT_GREEN}\u${RESET}\$(_prompt_host):\w ${LIGHT_PURPLE}\$(_prompt_git_branch)${RESET}> "
+PS1="${LIGHT_RED}\$(_prompt_rv)${RESET}${LIGHT_GREEN}\u${RESET}${CYAN}\$(_prompt_host)${RESET}:${LIGHT_BLUE}\w ${LIGHT_PURPLE}\$(_prompt_git_branch)${RESET}> "
 PS2='>> '
 
 # Keep environment clean
