@@ -47,7 +47,7 @@ dotfiles=(
 	bashrc
     config/alacritty.toml
     config/git
-    tmux.conf
+    config/tmux
     inputrc
 	vimrc
 )
