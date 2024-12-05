@@ -10,6 +10,14 @@
 # If not run interactively, don't do anything
 [[ -z "$PS1" ]] && return
 
+IS_LINUX=false
+IS_MACOS=false
+
+case "$(uname)" in
+    Linux) IS_LINUX=true ;;
+    Darwin) IS_MACOS=true ;;
+esac
+
 
 ## Shell Options
 ## =============
@@ -30,7 +38,15 @@ shopt -s checkwinsize
 export EDITOR='vim'
 export VISUAL='vim'
 
-#export GREP_COLOR='1;36'
+export GREP_OPTIONS='--color=always'
+
+if $IS_LINUX; then
+    # https://www.man7.org/linux/man-pages/man1/grep.1.html
+    echo 'Please set grep colors on linux'
+elif $IS_MACOS; then
+    export GREP_COLOR='1;31'
+fi
+
 export HISTCONTROL='ignoredups'
 export HISTSIZE=5000
 export HISTFILESIZE=5000
@@ -75,8 +91,30 @@ export PATH="$HOME/.local/bin:$PATH"
 # tree output that respects .gitignore
 gtree() {
 	# --fromfile in tree >=1.8.0
-	tree --fromfile < $PWD &>/dev/null || return 1
+	tree --fromfile < "$PWD" &>/dev/null || return 1
 	git ls-tree -r --name-only HEAD | tree --fromfile
+}
+
+# good-enough ripgrep
+rg() {
+    # if we're in a git directory use 'git grep'
+    if [ -d "$PWD/.git" ]; then
+        git grep -rni "$@"
+    else
+        # otherwise let's just use 'grep'
+        # -H: show file in output
+        # -I: no binary files
+        # -i: ignore case
+        # -r: recursive
+        # -n: line numbers
+        #
+        grep -HIirns "$@" "$PWD" | less -FR
+    fi
+}
+
+# cat file | highlight match
+highlight() {
+      grep --color -E "$1|\$"
 }
 
 ## Prompt
