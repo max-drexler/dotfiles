@@ -39,7 +39,9 @@ else
     KEEP_LOG=1
 fi
 
-# TODO: find way to remove array, so installer is sh-compatible
+# update the submodules
+git submodule update --init --recursive
+
 # Link dotfiles
 dotfiles=(
     aliasrc
@@ -50,6 +52,7 @@ dotfiles=(
     config/tmux
     inputrc
 	vimrc
+    vim
 )
 for f in "${dotfiles[@]}"; do
 	#[[ -d ~/.$f && ! -L ~/.$f ]] && rm -r ~/."$f"
