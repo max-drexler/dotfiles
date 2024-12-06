@@ -25,6 +25,12 @@ esac
 
 shopt -s extglob
 
+# If set, a command name that is the name of a directory is executed as if it were the argument to the cd command.
+shopt -s autocd
+
+# If set, minor errors in the spelling of a directory component in a cd command will be corrected.
+shopt -s cdspell
+
 # Bash won't get SIGWINCH if another process is in the foreground.
 # Enable checkwinsize so that bash will check the terminal size when
 # it regains control.  #65623
