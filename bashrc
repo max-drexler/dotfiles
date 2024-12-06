@@ -108,7 +108,11 @@ rg() {
         # -r: recursive
         # -n: line numbers
         #
-        grep -HIirns "$@" "$PWD" | less -FR
+        # rg pattern [files]
+        [ "$#" -lt 1 ] && return 1
+        pattern="$1"
+        shift
+        grep -HIirns "$pattern" "${@:-$PWD}" | less -FR
     fi
 }
 
