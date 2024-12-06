@@ -1,0 +1,36 @@
+#!/usr/bin/env python3
+
+## Uninstall all of the previously installed dotfiles
+## (indicated by the dotinstall log created by the install script).
+##
+## Author: Max Drexler
+## Date: 12/6/24
+## License: MIT
+##
+
+import os
+import sys
+
+
+INSTALL_LOG_PATH=os.getenv("INSTALL_LOG_PATH", os.path.expanduser("~/.dotinstall"))
+
+
+def uninstall():
+    if not os.path.isfile(INSTALL_LOG_PATH):
+        print(f"Couldn't find installation log at '{INSTALL_LOG_PATH}'!", file=sys.stderr)
+        return 1
+
+    with open(INSTALL_LOG_PATH, 'r', encoding='utf-8') as f:
+        for line in f:
+            dotpath = line.strip()
+            if os.path.islink(dotpath):
+                os.unlink(line.strip())
+            else:
+                print(f"Missing entry in dotinstall {dotpath}", file=sys.stderr)
+    os.remove(INSTALL_LOG_PATH)
+    return 0
+
+
+if __name__ == '__main__':
+    sys.exit(uninstall())
+
