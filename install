@@ -47,7 +47,7 @@ dotfiles=(
     aliasrc
     bash_profile
 	bashrc
-    config/alacritty.toml
+    config/alacritty
     config/git
     config/tmux
     inputrc
