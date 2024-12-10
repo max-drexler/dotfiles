@@ -109,6 +109,8 @@ if has("gui_running")
     set guitablabel=%M\ %t
 endif
 
+" Clear background
+highlight Normal ctermbg=NONE guibg=NONE
 
 " ---------------------------------------------
 " Highlight Unwanted Whitespace
