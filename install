@@ -51,8 +51,8 @@ dotfiles=(
     config/git
     config/tmux
     inputrc
+    vim # make sure vim is first for logging
 	vimrc
-    vim
 )
 for f in "${dotfiles[@]}"; do
 	#[[ -d ~/.$f && ! -L ~/.$f ]] && rm -r ~/."$f"
