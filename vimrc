@@ -139,7 +139,7 @@ highlight SpellLocal term=underline cterm=underline
 command! SC setlocal spell! spelllang=en_us    " toggle spellcheck
 
 nnoremap Y y$
-nnoremap <Esc> :noh<CR>
+nnoremap <silent> <Esc> :noh<CR>
 
 "command Vterm vertical term
 
