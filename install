@@ -48,6 +48,7 @@ dotfiles=(
     bash_profile
 	bashrc
     config/alacritty
+    config/dnf5
     config/git
     config/tmux
     inputrc
