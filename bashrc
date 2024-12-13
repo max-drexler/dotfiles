@@ -105,7 +105,7 @@ gtree() {
 rg() {
     # if we're in a git directory use 'git grep'
     if [ -d "$PWD/.git" ]; then
-        git grep -rni "$@"
+        git grep --untracked -rni "$@"
     else
         # otherwise let's just use 'grep'
         # -H: show file in output
