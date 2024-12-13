@@ -14,6 +14,9 @@ if &compatible
     set nocompatible
 endif
 
+" Disable modelines
+set nomodeline
+
 " ---------------------------------------------
 " Vim UI Options
 " ---------------------------------------------
