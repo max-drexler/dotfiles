@@ -91,36 +91,32 @@ set wrap						" Wrap
 " ---------------------------------------------
 " Vim Color Options
 " ---------------------------------------------
-set background=light			" Light background
 syntax enable					" Enable syntax highlighting
+filetype plugin indent on
+
+" true color support
+" https://github.com/rakr/vim-one?tab=readme-ov-file
+if has('termguicolors')
+    set termguicolors
+endif
 
 try
-	colorscheme torte			" Set theme if available
-catch
+	colorscheme one			" Set theme if available
+
+catch /.*/
+    echoerr v:exception
 endtry
 
-" Enable 256 colors palette in Gnome Terminal
-if $COLORTERM == 'gnome-terminal'
-    set t_Co=256
-endif
+set background=dark			" Dark colorscheme
+" Make comments more visible with transparent background
+highlight Comment guifg=#cccccc ctermfg=white
+highlight vimLineComment guifg=#cccccc ctermfg=white
 
-" Set extra options when running in GUI mode
-if has("gui_running")
-    set guioptions-=T
-    set guioptions-=e
-    set t_Co=256
-    set guitablabel=%M\ %t
-endif
+highlight Normal ctermbg=NONE guibg=NONE " Transparent background
 
-" Clear background
-highlight Normal ctermbg=NONE guibg=NONE
-
-" ---------------------------------------------
-" Highlight Unwanted Whitespace
-" ---------------------------------------------
-highlight RedundantWhitespace ctermbg=green guibg=green
+" highlight unwanted whitespace
+highlight link RedundantWhitespace StatusLineTerm
 match RedundantWhitespace /\s\+$\| \+\ze\t/
-
 
 " ---------------------------------------------
 " Spell Check Settings
@@ -144,7 +140,13 @@ command! SC setlocal spell! spelllang=en_us    " toggle spellcheck
 nnoremap Y y$
 nnoremap <silent> <Esc> :noh<CR>
 
-"command Vterm vertical term
+if has("autocmd")
+    " When editing a file, always jump to the last cursor position
+    autocmd BufReadPost *
+        \ if line("'\"") > 0 && line ("'\"") <= line("$") |
+        \   exe "normal g'\"" |
+        \ endif
+endif
 
 " ---------------------------------------------
 " Helper functions
