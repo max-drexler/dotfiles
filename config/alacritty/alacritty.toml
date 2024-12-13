@@ -6,7 +6,7 @@ opacity = 0.8
 blur = true
 
 # OSX only
-decorations = "Buttonless"
+decorations = "None"
 
 [window.padding]
 x = 10
