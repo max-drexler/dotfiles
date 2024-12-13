@@ -108,10 +108,6 @@ catch /.*/
 endtry
 
 set background=dark			" Dark colorscheme
-" Make comments more visible with transparent background
-highlight Comment guifg=#cccccc ctermfg=white
-highlight vimLineComment guifg=#cccccc ctermfg=white
-
 highlight Normal ctermbg=NONE guibg=NONE " Transparent background
 
 " highlight unwanted whitespace
