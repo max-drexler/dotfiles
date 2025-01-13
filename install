@@ -8,7 +8,7 @@
 # License: MIT
 #
 # Editor: Max Drexler <mndrexler@gmail.com>
-# Date: Nov. 27, 2024
+# Date: Jan 13, 2025
 
 
 # Keep a log of "installed" dotfiles for easy uninstall
@@ -56,7 +56,7 @@ dotfiles=(
 	vimrc
 )
 for f in "${dotfiles[@]}"; do
-	#[[ -d ~/.$f && ! -L ~/.$f ]] && rm -r ~/."$f"
+	[[ -d ~/.$f && ! -L ~/.$f ]] && rm -r ~/."$f"
 	symlink "$PWD/$f" ~/."$f"
     [ "$KEEP_LOG" -eq 0 ] && log_install ~/."$f"
 done
