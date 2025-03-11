@@ -25,7 +25,7 @@ jobs:
           run: |
             mkdir -p output
             tar -czvf output/dotfiles.tar.gz vimrc bashrc zshrc
-            cp install.sh output
+            cp install output
   
         - name: Upload static files as artifact
           id: deployment
