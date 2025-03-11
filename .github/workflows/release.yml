@@ -21,15 +21,21 @@ jobs:
 
     steps:
     - name: Checkout repository
-      uses: actions/checkout@v2
+      uses: actions/checkout@v4
 
     - name: Create tar.gz archive of dotfiles
       run: |
         mkdir -p output
         tar -czvf output/dotfiles.tar.gz .vimrc .bashrc .zshrc
 
-    - name: Upload artifact
-      uses: actions/upload-artifact@v2
+    - name: Upload installer
+      uses: actions/upload-artifact@v4
+      with:
+        name: install-script
+        path: install.sh
+
+    - name: Upload archive
+      uses: actions/upload-artifact@v4
       with:
         name: dotfiles-archive
         path: output/dotfiles.tar.gz
@@ -40,15 +46,15 @@ jobs:
 
     steps:
     - name: Checkout repository
-      uses: actions/checkout@v2
+      uses: actions/checkout@v4
 
     - name: Download artifact
-      uses: actions/download-artifact@v2
+      uses: actions/download-artifact@v4
       with:
         name: dotfiles-archive
         path: output
 
     - name: Upload to GitHub Pages
-      uses: actions/upload-pages-artifact@v5
+      uses: actions/upload-pages-artifact@v3
       with:
-        path: output/dotfiles.tar.gz
+        path: output
