@@ -1,5 +1,5 @@
 on:
-  workflow_dispath:
+  workflow_dispatch:
 
 # Sets permissions of the GITHUB_TOKEN to allow deployment to GitHub Pages
 permissions:
